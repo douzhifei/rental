@@ -69,10 +69,9 @@ export default {
   created () {
     this.getRoomList()
   },
-  mounted () {
-  },
   methods: {
     getRoomList () {
+      this.data = []
       let data = { type: this.$route.query.type }
       axios.get('/room', { params: data }).then(res => {
         this.data = res.data
@@ -128,6 +127,14 @@ export default {
     },
     handleSelectionChange (val) {
       this.selectedRow = val
+    }
+  },
+  watch: {
+    '$route' (to, from) {
+      if (this.$route.query.type === this.type) {
+        return
+      }
+      this.getRoomList()
     }
   },
   components: { roomAdd }

@@ -39,6 +39,7 @@ export default {
     flex-direction column
     align-items center
     justify-content center
+    font-size 24px
     .item
       padding 15px
 </style>

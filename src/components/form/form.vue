@@ -49,6 +49,7 @@ export default {
       this.getData(data)
     },
     getData (data) {
+      this.data = []
       axios.get('/bill/list', { params: data }).then(res => {
         if (res.data.length === 0) {
           this.create = true
@@ -80,16 +81,24 @@ export default {
     },
     modify (item) {
       axios.put('/bill', item).then(res => {
-        //console.log(res.data)
+        // console.log(res.data)
       })
     },
     changeDate () {
       let data = {
-        type: this.type,
+        type: this.$route.query.type,
         year: this.year,
         month: this.month
       }
       this.getData(data)
+    }
+  },
+  watch: {
+    '$route' (to, from) {
+      if (this.$route.query.type === this.type) {
+        return
+      }
+      this.changeDate()
     }
   }
 }

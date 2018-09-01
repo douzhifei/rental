@@ -31,6 +31,7 @@
         </div>
       </li>
     </ul>
+    <div class="blank"></div>
   </div>
 </template>
 <script>
@@ -126,12 +127,20 @@ export default {
     },
     changeDate () {
       let data = {
-        type: this.type,
+        type: this.$route.query.type,
         year: this.year,
         month: this.month
       }
       this.data = []
       this.getData(data)
+    }
+  },
+  watch: {
+    '$route' (to, from) {
+      if (this.$route.query.type === this.type) {
+        return
+      }
+      this.changeDate()
     }
   }
 }
@@ -183,4 +192,7 @@ export default {
     height 80px
     background yellow
     font-size 30px
+  .blank
+    width 100%
+    height 100px
 </style>

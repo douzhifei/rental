@@ -35,10 +35,10 @@
           <div class="item-input">{{item.rateE}}</div>
         </div>
         <div class="item-we">
-          <div class="item-input">房租</div>
-          <div class="item-input">{{item.rent}}</div>
+          <div class="item-input item-start">房租</div>
+          <div class="item-input item-right">{{item.rent}}</div>
         </div>
-        <div class="item-we">{{item.total}}</div>
+        <div class="item-we item-total">¥{{item.total}}</div>
       </li>
     </ul>
     <div class="total" v-show="data.length">共{{rooms}}套，{{total}}元</div>
@@ -107,6 +107,8 @@ export default {
             return
           }
           this.lastMonth = res
+          this.total = 0
+          this.rooms = 0
           this.thisMonth.forEach(value => {
             let lastM = this.searchBill(value, this.lastMonth)
             value.lastWater = lastM.water
@@ -139,12 +141,20 @@ export default {
     },
     changeDate () {
       let data = {
-        type: this.type,
+        type: this.$route.query.type,
         year: this.year,
         month: this.month
       }
       this.data = []
       this.getData(data)
+    }
+  },
+  watch: {
+    '$route' (to, from) {
+      if (this.$route.query.type === this.type) {
+        return
+      }
+      this.changeDate()
     }
   }
 }
@@ -178,6 +188,15 @@ export default {
           align-items center
           justify-content center
           border-bottom 1px solid red
+        .item-right
+          justify-content flex-end
+          padding-right 20px
+        .item-start
+          justify-content flex-start
+          padding-left 8px
+      .item-total
+        justify-content flex-end
+        padding-right 20px
   .selectM
     font-size 24px
     height 80px
