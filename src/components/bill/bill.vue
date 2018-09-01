@@ -93,6 +93,8 @@ export default {
           last.year = data.year - 1
         }
         this.getBillList(last).then(res => {
+          this.total = 0
+          this.rooms = 0
           if (res.length === 0) {
             this.thisMonth.forEach(value => {
               value.lastWater = 0
@@ -103,12 +105,12 @@ export default {
               value.rateE = 0
               value.total = 0
               this.data.push(value)
+              this.total += value.rent
+              this.rooms++
             })
             return
           }
           this.lastMonth = res
-          this.total = 0
-          this.rooms = 0
           this.thisMonth.forEach(value => {
             let lastM = this.searchBill(value, this.lastMonth)
             value.lastWater = lastM.water
