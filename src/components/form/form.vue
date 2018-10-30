@@ -13,7 +13,7 @@
         <el-input class="item-input" type="number" v-model.number="item.electric" @blur.prevent="modify(item)"></el-input>
       </li>
     </ul>
-    <div v-if="create" @click="createForm">创建抄单表</div>
+    <div v-if="create"><el-button type="primary" @click="openCreate" >创建抄单表</el-button></div>
   </div>
 </template>
 
@@ -57,6 +57,7 @@ export default {
           return
         }
         this.data = res.data
+        this.create = false
       })
     },
     createForm () {
@@ -91,7 +92,25 @@ export default {
         month: this.month
       }
       this.getData(data)
-    }
+    },
+    openCreate() {
+        this.$confirm('按此键将生存月份水电表, 是否继续?', '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        }).then(() => {
+          this.createForm () 
+          this.$message({
+            type: 'success',
+            message: '创建成功！'
+          });
+        }).catch(() => {
+          this.$message({
+            type: 'info',
+            message: '已取消删除'
+          });          
+        });
+      }
   },
   watch: {
     '$route' (to, from) {
@@ -132,5 +151,5 @@ export default {
     .year
       width 60px
     .month
-      width 20px
+      width 40px
 </style>

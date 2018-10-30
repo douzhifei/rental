@@ -208,7 +208,7 @@ export default {
     .year
       width 60px
     .month
-      width 20px
+      width 40px
   .total
     display flex
     align-items center
