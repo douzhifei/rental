@@ -8,7 +8,7 @@
       <li v-for="(item,index) in data" :key="index" class="item" v-show="item.billing">
         <div class="item-we">
           <div class="item-input">{{item.NO}}</div>
-          <div class="item-input">{{item.year}}年{{item.month}}月{{day}}日</div>
+          <div class="item-input">{{item.year}}年{{item.month}}月{{item.day}}日</div>
         </div>
         <div class="item-we">
           <div class="item-input">项目</div>
@@ -83,9 +83,8 @@ export default {
         }
         this.thisMonth = res
         let last = {}
-        last.NO = data.NO
         last.type = this.type
-        if (data.month !== 1) {
+        if (data.month != 1) {
           last.month = data.month - 1
           last.year = data.year
         } else {
