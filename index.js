@@ -51,6 +51,12 @@ app.get('/bill/list', function(req, res) {
     res.end(JSON.stringify(data))
   })
 })
+app.get("/bill/account",function(req, res){
+  Bill.getAccountList(req.query).then((data) => {
+    res.writeHead(200,{'Content-Type':'text/html;charset=utf-8'})
+    res.end(JSON.stringify(data))
+  })
+ })
 app.get('/bill', function(req, res) {
   Bill.getOne(req.query).then(data => {
     res.writeHead(200, { 'Content-Type': 'text/html;charset=utf-8' })
