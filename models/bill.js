@@ -28,11 +28,25 @@ module.exports = {
 
   // 获取列表
   getList: function getList (data) {
-    return Bill.find({type: data.type, month: data.month, year: data.year}).sort({NO: 1})
+    return Bill.find({
+      type: data.type,
+      month: data.month,
+      year: data.year
+    }).sort({ NO: 1 })
+  },
+
+  // 获取房子每月列表
+  getAccountList: function getAccountList (data) {
+    return Bill.find({ type: data.type, NO: data.NO }).sort({ year: 1, month: 1 })
   },
 
   // 获取列表
   getOne: function getOne (data) {
-    return Bill.find({type: data.type, month: data.month, year: data.year, NO: data.NO}).sort({NO: 1})
+    return Bill.find({
+      type: data.type,
+      month: data.month,
+      year: data.year,
+      NO: data.NO
+    }).sort({ NO: 1 })
   }
 }

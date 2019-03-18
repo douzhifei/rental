@@ -6,6 +6,7 @@ import Room from '@/components/room/room'
 import Form from '@/components/form/form'
 import Bill from '@/components/bill/bill'
 import Record from '@/components/record/record'
+import Account from '@/components/account/account'
 
 Vue.use(Router)
 
@@ -40,6 +41,11 @@ export default new Router({
       path: '/record',
       name: 'record',
       component: Record
+    },
+    {
+      path: '/account',
+      name: 'account',
+      component: Account
     }
   ]
 })

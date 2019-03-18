@@ -31,6 +31,8 @@ export default {
     return {
       data: [],
       udata: {},
+      building : ['新建','志伟','志飞'],
+      partyA : ['窦厚源','窦志伟','窦志飞'],
       isAdd: true,
       titles: [{
         prop: 'NO',
@@ -83,15 +85,16 @@ export default {
       this.isAdd = true
     },
     submit (val) {
+      val.type = this.$route.query.type
+      val.name = this.building[val.type+1]
+      val.partyA = this.partyA[val.type+1]
       if (this.isAdd) {
-        val.type = this.$route.query.type
         axios.post('/room', val).then(res => {
           this.isOpenAdd = false
           this.$message('添加成功！')
           this.data.unshift(val)
         })
       } else {
-        val.type = this.$route.query.type
         axios.put('/room', val).then(res => {
           if (!res.data.ok) {
             this.$message('修改失败！')

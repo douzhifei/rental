@@ -12,8 +12,29 @@
       <div class="a-item a-type">租金：
         <el-input class="a-input" type="number" v-model.number="data.rent" placeholder="租金"></el-input>
       </div>
-      <div class="a-item a-type">日期：
+      <div class="a-item a-type">押金：
+        <el-input class="a-input" type="number" v-model.number="data.deposit" placeholder="押金"></el-input>
+      </div>
+      <div class="a-item a-type">缴租日期：
         <el-input class="a-input" type="number" v-model.number="data.day" placeholder="收租日期"></el-input>
+      </div>
+      <div class="a-item a-type">合同时间：
+        <el-input class="a-input" type="date" v-model="data.date" placeholder="合同时间"></el-input>
+      </div>
+      <div class="a-item a-type">租期：
+        <el-input class="a-input" type="number" v-model="data.time" placeholder="租期"></el-input>
+      </div>
+      <div class="a-item a-type">乙方：
+        <el-input class="a-input" type="text" v-model.trim="data.partyB" placeholder="乙方"></el-input>
+      </div>
+      <div class="a-item a-type">电话：
+        <el-input class="a-input" type="number" v-model.number="data.phone" placeholder="电话"></el-input>
+      </div>
+      <div class="a-item a-type">身份证：
+        <el-input class="a-input" type="number" v-model="data.IDCard" placeholder="身份证"></el-input>
+      </div>
+      <div class="a-item a-type">备注：
+        <el-input class="a-input" type="text" v-model.trim="data.desc" placeholder="备注"></el-input>
       </div>
     </div>
   </div>
@@ -50,6 +71,8 @@ export default {
         this.$message('不能有空值！')
         return
       }
+      this.update = new Date()
+
       this.$emit('submit', this.data)
     }
   }
@@ -69,6 +92,7 @@ export default {
     font-size 16px
     top 0
     border-bottom 2px solid #E7E6EB
+    margin-bottom 20px
     .head-center
       width 285px
       height 45px

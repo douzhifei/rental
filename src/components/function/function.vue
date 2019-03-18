@@ -13,6 +13,9 @@
       <li class="item">
         <div @click="goto('/record')">抄簿</div>
       </li>
+       <li class="item">
+        <div @click="goto('/account')">账本</div>
+      </li>
     </ul>
   </div>
 </template>
